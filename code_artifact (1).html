@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>موسوعة مخارج الحروف وصفاتها التفاعلية</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Tajawal & Amiri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Tajawal', 'sans-serif'],
+            quran: ['Amiri', 'serif'],
+          },
+          colors: {
+            navy: {
+              900: '#0F1E36',
+              800: '#162A4C',
+              700: '#1E3A66',
+              600: '#2B4F87',
+            },
+            gold: {
+              500: '#C59B27',
+              400: '#D9B343',
+              100: '#FBF6E6',
+              50: '#FDFBF3',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #F4F6F9;
+      color: #1E293B;
+      overflow-x: hidden;
+    }
+
+    /* تحسين شريط التمرير */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #E2E8F0;
+      border-radius: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 8px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #64748B;
+    }
+
+    /* نبض نقطة المخرج في الرسم التشريحي */
+    @keyframes pulseMarker {
+      0% { transform: scale(1); opacity: 0.95; }
+      50% { transform: scale(1.45); opacity: 0.45; }
+      100% { transform: scale(1); opacity: 0.95; }
+    }
+    .marker-pulse {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: pulseMarker 1.8s infinite ease-in-out;
+    }
+
+    /* رسوم متحركة لقسم الصفات */
+    @keyframes airFlow {
+      0% { stroke-dashoffset: 60; opacity: 0.2; }
+      50% { opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 0.2; }
+    }
+    .anim-air {
+      stroke-dasharray: 10 8;
+      animation: airFlow 1.4s linear infinite;
+    }
+
+    @keyframes vocalCordVibrate {
+      0%, 100% { transform: scaleX(1); }
+      25% { transform: scaleX(0.65); }
+      50% { transform: scaleX(1.2); }
+      75% { transform: scaleX(0.75); }
+    }
+    .anim-vibrate {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: vocalCordVibrate 0.25s infinite ease-in-out;
+    }
+
+    @keyframes soundStop {
+      0% { transform: translateX(0); opacity: 1; }
+      45% { transform: translateX(-28px); opacity: 1; }
+      55% { transform: translateX(-32px) scaleY(1.3); opacity: 0.9; }
+      100% { transform: translateX(-32px); opacity: 0; }
+    }
+    .anim-stop {
+      animation: soundStop 1.8s infinite ease-out;
+    }
+
+    @keyframes soundBainiyah {
+      0% { transform: translateX(0); opacity: 1; }
+      35% { transform: translateX(-24px); opacity: 1; }
+      50% { transform: translateX(-26px); opacity: 0.8; }
+      100% { transform: translateX(-55px); opacity: 0.15; }
+    }
+    .anim-bainiyah {
+      animation: soundBainiyah 2.2s infinite ease-in-out;
+    }
+
+    @keyframes qalqalahBounce {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      30% { transform: translate(-18px, 0) scale(0.9); }
+      50% { transform: translate(-8px, -12px) scale(1.25); }
+      75% { transform: translate(-25px, -18px) scale(1); }
+    }
+    .anim-qalqalah {
+      animation: qalqalahBounce 1.6s infinite ease-in-out;
+    }
+
+    @keyframes tafashiSpread {
+      0% { transform: scale(0.5); opacity: 0.9; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+    .anim-tabashi {
+      transform-box: fill-box;
+      transform-origin: right center;
+      animation: tafashiSpread 1.5s infinite ease-out;
+    }
+
+    @keyframes takrirTrill {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-12deg); }
+      75% { transform: rotate(10deg); }
+    }
+    .anim-trill {
+      transform-box: fill-box;
+      transform-origin: left bottom;
+      animation: takrirTrill 0.22s infinite linear;
+    }
+
+    @keyframes istitalahSlide {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(-22px); }
+    }
+    .anim-istitalah {
+      animation: istitalahSlide 2s infinite ease-in-out;
+    }
+
+    .tab-active {
+      background-color: #162A4C;
+      color: #FFFFFF;
+      border-bottom: 3px solid #D9B343;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- الرأس العلوي وشريط التنقل -->
+  <header class="bg-navy-900 text-white shadow-lg sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between py-4 gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-gold-500/20 border border-gold-400/50 flex items-center justify-center text-gold-400 font-quran text-2xl font-bold shadow-inner">
+            ض
+          </div>
+          <div>
+            <h1 class="text-lg sm:text-xl font-extrabold tracking-wide text-white">موسوعة مخارج الحروف وصفاتها</h1>
+            <p class="text-xs text-slate-300">وفق المذهب المعتمد للخليل بن أحمد الفراهيدي وابن الجزري (17 مخرجاً و17 صفة)</p>
+          </div>
+        </div>
+
+        <!-- أزرار التبويبات الرئيسية -->
+        <nav class="flex bg-navy-800/90 p-1 rounded-xl border border-slate-700/70 overflow-x-auto">
+          <button onclick="switchTab('makhaarij')" id="tab-btn-makhaarij" class="tab-active flex-1 md:flex-none px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold transition-all whitespace-nowrap flex items-center justify-center gap-2">
+            <span>١. مخارج الحروف (١٧)</span>
+          </button>
+          <button onclick="switchTab('letters')" id="tab-btn-letters" class="text-slate-300 hover:text-white flex-1 md:flex-none px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold transition-all whitespace-nowrap flex items-center justify-center gap-2">
+            <span>٢. الحروف وصفاتها</span>
+          </button>
+          <button onclick="switchTab('sifaat')" id="tab-btn-sifaat" class="text-slate-300 hover:text-white flex-1 md:flex-none px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold transition-all whitespace-nowrap flex items-center justify-center gap-2">
+            <span>٣. الصفات وحركة الصوت</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- المحتوى الرئيسي -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- ========================================================= -->
+    <!-- القسم الأول: مخارج الحروف (17 مخرجاً فرعياً في 5 عامة) -->
+    <!-- ========================================================= -->
+    <section id="section-makhaarij" class="space-y-6">
+      
+      <!-- شريط تصفية المخارج العامة الخمسة -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200/80">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+          <h2 class="text-base sm:text-lg font-bold text-navy-900 flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-gold-500"></span>
+            المخارج العامة الخمسة (مذهب الخليل بن أحمد الفراهيدي)
+          </h2>
+          <span class="text-xs font-medium bg-gold-100 text-navy-800 px-3 py-1 rounded-full border border-gold-400/40">
+            اضغط على المخرج أو النقطة التشريحية للمعاينة
+          </span>
+        </div>
+        <div id="general-makhaarij-filters" class="flex flex-wrap gap-2">
+          <!-- يتم تعبئتها عبر JS -->
+        </div>
+      </div>
+
+      <!-- الشبكة الرئيسية: الرسم التشريحي + لوحة التحكم والتفاصيل -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- العمود الأيمن: الرسم التشريحي التفاعلي SVG -->
+        <div class="lg:col-span-6 bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200/80 sticky top-24">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-sm font-bold text-navy-800">مقطع جانبي لأعضاء النطق</span>
+            <span id="svg-active-badge" class="text-xs font-bold bg-navy-900 text-gold-400 px-3 py-1 rounded-full">
+              الجوف
+            </span>
+          </div>
+
+          <!-- لوحة الرسم التشريحي عالي الدقة -->
+          <div class="relative w-full bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden p-2">
+            <svg id="anatomy-svg" viewBox="0 0 540 480" class="w-full h-auto select-none">
+              <defs>
+                <!-- تدرجات لونية تشريحية هادئة وواضحة -->
+                <linearGradient id="skinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#F8E5D3" />
+                  <stop offset="100%" stop-color="#EBD0B7" />
+                </linearGradient>
+                <linearGradient id="tongueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#E58B88" />
+                  <stop offset="100%" stop-color="#C86460" />
+                </linearGradient>
+                <linearGradient id="cavityGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#3B2C35" />
+                  <stop offset="100%" stop-color="#583E4B" />
+                </linearGradient>
+                <linearGradient id="jawfGlow" x1="100%" y1="100%" x2="0%" y2="0%">
+                  <stop offset="0%" stop-color="#D9B343" stop-opacity="0.55" />
+                  <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.45" />
+                </linearGradient>
+                <linearGradient id="khayshoomGlow" x1="100%" y1="100%" x2="0%" y2="0%">
+                  <stop offset="0%" stop-color="#D9B343" stop-opacity="0.6" />
+                  <stop offset="100%" stop-color="#F59E0B" stop-opacity="0.3" />
+                </linearGradient>
+                <filter id="glowFilter" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="4" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+
+              <!-- خلفية شبكية خفيفة -->
+              <rect width="540" height="480" fill="#F8FAFC" rx="16" />
+
+              <!-- 1. الهيكل الخارجي للرأس والرقبة (مقطع جانبي يواجه اليسار) -->
+              <path d="M 185,20 
+                       C 145,55 125,105 112,140 
+                       L 68,195 
+                       C 62,203 68,213 80,215 
+                       L 105,218 
+                       C 103,232 106,242 112,248 
+                       C 98,254 96,268 108,274 
+                       L 124,276 
+                       L 124,292 
+                       L 106,294 
+                       C 95,300 98,314 112,318 
+                       C 105,332 112,356 135,364 
+                       C 162,372 195,374 220,374 
+                       L 225,460 
+                       L 430,460 
+                       L 420,310 
+                       C 425,210 390,90 310,35 
+                       C 270,12 215,10 185,20 Z" 
+                    fill="url(#skinGrad)" stroke="#C6A68A" stroke-width="2.5" />
+
+              <!-- 2. تجويف الأنف (الخيشوم) -->
+              <path id="svg-khayshoom-area"
+                    d="M 106,214 
+                       C 125,180 175,148 245,152 
+                       C 285,155 312,175 322,208 
+                       C 305,205 280,196 245,196 
+                       C 190,196 140,206 106,214 Z" 
+                    fill="#D99B9B" stroke="#B57272" stroke-width="1.8" />
+
+              <!-- عظم الحنك الأعلى -->
+              <path d="M 126,246 C 165,222 225,212 285,224 L 285,236 C 225,224 168,234 126,256 Z" 
+                    fill="#F3E5AB" stroke="#D4C27A" stroke-width="1.5" />
+
+              <!-- 3. تجويف الفم والحلق (الخلفية الداكنة للتجويف) -->
+              <path d="M 112,256 
+                       L 132,256 
+                       C 168,234 225,224 285,236 
+                       C 305,242 315,260 312,282 
+                       C 324,252 325,220 322,208 
+                       C 344,225 356,265 356,315 
+                       L 356,460 
+                       L 285,460 
+                       L 285,375 
+                       C 265,360 225,356 170,350 
+                       L 124,312 
+                       L 112,312 
+                       L 124,292 
+                       L 124,276 
+                       Z" 
+                    fill="url(#cavityGrad)" />
+
+              <!-- اللهاة والحنك اللحمي -->
+              <path d="M 285,224 C 304,228 316,246 314,274 C 312,282 305,282 303,273 C 300,256 292,242 285,236 Z" 
+                    fill="#E58B88" stroke="#B55D5A" stroke-width="1.5" />
+
+              <!-- لسان المزمار (عند وسط الحلق) -->
+              <path d="M 304,358 C 316,342 324,335 327,338 C 330,342 322,358 310,372 Z" 
+                    fill="#E58B88" stroke="#B55D5A" stroke-width="1.5" />
+
+              <!-- الوتران الصوتيان والحنجرة (أقصى الحلق) -->
+              <g id="vocal-cords-group">
+                <path d="M 294,415 L 318,415 L 314,424 L 294,424 Z" fill="#FDE047" stroke="#CA8A04" stroke-width="1.2" />
+                <path d="M 352,415 L 328,415 L 332,424 L 352,424 Z" fill="#FDE047" stroke="#CA8A04" stroke-width="1.2" />
+              </g>
+
+              <!-- 4. الأسنان العلوية والسفلية (الثنايا والأضراس) -->
+              <!-- الثنايا العليا -->
+              <path d="M 126,254 L 136,254 L 135,274 C 135,277 127,277 127,274 Z" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.5" />
+              <!-- الأضراس العليا (خلفية شفافة للتوضيح) -->
+              <path d="M 140,250 Q 195,238 245,246 L 245,260 Q 195,252 140,263 Z" fill="#FFFFFF" fill-opacity="0.35" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 2" />
+              
+              <!-- الثنايا السفلى -->
+              <path d="M 127,308 L 136,308 L 135,291 C 135,288 128,288 128,291 Z" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.5" />
+
+              <!-- 5. اللسان (عضلة اللسان الكاملة) -->
+              <path id="svg-tongue"
+                    d="M 136,294 
+                       C 155,276 195,264 242,268 
+                       C 280,271 304,294 306,334 
+                       C 307,352 298,366 285,372 
+                       C 245,368 185,362 148,342 
+                       C 136,332 132,306 136,294 Z" 
+                    fill="url(#tongueGrad)" stroke="#A64B48" stroke-width="2" />
+              <!-- خطوط عضلية تجميلية داخل اللسان -->
+              <path d="M 162,315 Q 215,295 275,315" fill="none" stroke="#B55D5A" stroke-width="1.5" stroke-opacity="0.5" />
+              <path d="M 175,335 Q 225,320 278,338" fill="none" stroke="#B55D5A" stroke-width="1.5" stroke-opacity="0.5" />
+
+              <!-- ======================================================= -->
+              <!-- طبقات التمييز الديناميكية للمخارج (تظهر حسب الاختيار) -->
+              <!-- ======================================================= -->
+
+              <!-- منطقة الجوف المضيئة (خلاء الحلق والفم) -->
+              <g id="highlight-jawf" class="transition-opacity duration-300">
+                <path d="M 322,435 
+                         C 325,380 332,330 325,285 
+                         C 315,255 265,244 205,250 
+                         C 165,254 132,268 102,282" 
+                      fill="none" stroke="url(#jawfGlow)" stroke-width="22" stroke-linecap="round" />
+                <path d="M 322,425 C 325,375 332,325 322,285 C 310,255 255,246 195,252 C 155,256 125,270 95,284" 
+                      fill="none" stroke="#FACC15" stroke-width="3" stroke-dasharray="8 6" class="anim-air" />
+              </g>
+
+              <!-- منطقة الخيشوم المضيئة -->
+              <g id="highlight-khayshoom" class="opacity-0 transition-opacity duration-300">
+                <path d="M 318,230 C 308,195 275,172 225,172 C 175,172 132,190 92,214" 
+                      fill="none" stroke="url(#khayshoomGlow)" stroke-width="18" stroke-linecap="round" />
+                <path d="M 315,225 C 305,195 275,174 225,174 C 175,174 132,192 85,214" 
+                      fill="none" stroke="#F59E0B" stroke-width="3" stroke-dasharray="7 5" class="anim-air" />
+              </g>
+
+              <!-- نقاط المخرج الفردية القابلة للنقر -->
+              <g id="svg-markers-layer">
+                <!-- يتم توليد النقاط الـ 17 تلقائياً بواسطة JS لضمان التزامن الدقيق -->
+              </g>
+
+              <!-- تسميات تشريحية ثابتة بخط صغير هادئ -->
+              <text x="195" y="182" fill="#7C2D12" font-size="11" font-weight="bold" text-anchor="middle">الخيشوم</text>
+              <text x="205" y="232" fill="#78350F" font-size="10" font-weight="bold" text-anchor="middle">الحنك الأعلى</text>
+              <text x="220" y="325" fill="#FFFFFF" font-size="13" font-weight="bold" text-anchor="middle">اللسان</text>
+              <text x="336" y="310" fill="#E2E8F0" font-size="10" font-weight="bold" text-anchor="middle">الحلق</text>
+              <text x="323" y="442" fill="#FDE047" font-size="10" font-weight="bold" text-anchor="middle">الحنجرة</text>
+            </svg>
+          </div>
+
+          <!-- مفتاح الألوان أسفل الرسم -->
+          <div class="mt-3 flex flex-wrap items-center justify-center gap-4 text-xs text-slate-600">
+            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-gold-500 inline-block"></span> المخرج المحدد حالياً</span>
+            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-sky-500 inline-block"></span> مخارج عامة أخرى (اضغط للتحديد)</span>
+          </div>
+        </div>
+
+        <!-- العمود الأيسر: قائمة المخارج الـ 17 + بطاقة الشرح التفصيلي -->
+        <div class="lg:col-span-6 space-y-5">
+          
+          <!-- بطاقة تفاصيل المخرج المختار -->
+          <div id="makhraj-detail-card" class="bg-navy-900 text-white rounded-2xl p-5 sm:p-6 shadow-md border border-navy-700 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-32 h-32 bg-gold-500/10 rounded-full -translate-x-10 -translate-y-10 pointer-events-none"></div>
+            
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span id="detail-general-name" class="text-xs font-bold uppercase tracking-wider bg-gold-500 text-navy-900 px-3 py-1 rounded-full">
+                المخرج العام: الجوف
+              </span>
+              <span id="detail-number-badge" class="text-xs text-slate-300 font-medium">
+                المخرج رقم ١ من ١٧
+              </span>
+            </div>
+
+            <h3 id="detail-sub-name" class="text-xl sm:text-2xl font-extrabold text-white mb-4">
+              خلاء الحلق والفم (مخرج مقدّر)
+            </h3>
+
+            <!-- الحروف الخارجة من هذا المخرج -->
+            <div class="mb-4">
+              <span class="text-xs text-slate-300 block mb-2">الحروف الخارجة منه:</span>
+              <div id="detail-letters-container" class="flex flex-wrap gap-2.5">
+                <!-- تُملأ برمجياً -->
+              </div>
+            </div>
+
+            <!-- شرح آلية النطق -->
+            <div class="bg-navy-800/80 rounded-xl p-4 border border-slate-700/80">
+              <h4 class="text-xs font-bold text-gold-400 mb-1.5">آلية النطق والموضع التشريحي:</h4>
+              <p id="detail-description" class="text-sm text-slate-200 leading-relaxed">
+                تخرج حروف المد الثلاثة (الألف الساكنة المفتوح ما قبلها، والواو الساكنة المضموم ما قبلها، والياء الساكنة المكسور ما قبلها) باهتزاز الوترين الصوتيين في الحنجرة، ويندفع الصوت ماراً بخلاء الحلق والفم دون أن يصطدم بموضع معين.
+              </p>
+            </div>
+          </div>
+
+          <!-- قائمة المخارج الفرعية الـ 17 -->
+          <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200/80">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-base font-bold text-navy-900">المخارج الفرعية (١٧ مخرجاً)</h3>
+              <span id="filtered-count-label" class="text-xs text-slate-500">عرض الكل (١٧)</span>
+            </div>
+            <div id="sub-makhaarij-list" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[420px] overflow-y-auto pr-1">
+              <!-- بطاقات المخارج الفرعية الـ 17 -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- القسم الثاني: الحروف وصفاتها (الـ 17 صفة المعتمدة) -->
+    <!-- ========================================================= -->
+    <section id="section-letters" class="hidden space-y-6">
+      
+      <!-- شريط التصفية (الفلترة) حسب الصفات -->
+      <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200/80">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+          <div>
+            <h2 class="text-base sm:text-lg font-bold text-navy-900">تصفية الحروف حسب الصفة (المعتمد عند ابن الجزري)</h2>
+            <p class="text-xs text-slate-500">اختر صفة لتمييز حروفها، أو اضغط على أي حرف لعرض بطاقة صفاته الـ 17 كاملة</p>
+          </div>
+          <button onclick="resetLetterFilter()" class="self-start sm:self-auto text-xs font-bold bg-slate-100 hover:bg-slate-200 text-navy-800 px-3 py-2 rounded-lg transition">
+            إظهار جميع الحروف (٢٩)
+          </button>
+        </div>
+
+        <!-- أزرار الفلترة السريعة -->
+        <div class="space-y-2.5">
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span class="text-xs font-bold text-navy-700 ml-1">صفات لها ضد:</span>
+            <button onclick="filterLettersBySifah('همس')" data-filter="همس" class="sifah-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 hover:bg-navy-800 hover:text-white transition">الهمس (١٠)</button>
+            <button onclick="filterLettersBySifah('جهر')" data-filter="جهر" class="sifah-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 hover:bg-navy-800 hover:text-white transition">الجهر (١٩)</button>
+            <button onclick="filterLettersBySifah('شدة')" data-filter="شدة" class="sifah-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 hover:bg-navy-800 hover:text-white transition">الشدة (٨)</button>
+            <button onclick="filterLettersBySifah('توسط')" data-filter="توسط" class="sifah-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 hover:bg-navy-800 hover:text-white transition">التوسط (٥)</button>
+            <button onclick="filterLettersBySifah('رخاوة')" data-filter="رخاوة" class="sifah-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 hover:bg-navy-800 hover:text-white transition">الرخاوة (١٦)</button>
+            <button onclick="filterLettersBySifah('استعلاء')" data-filter="استعلاء" class="sifah-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 hover:bg-navy-800 hover:text-white transition">الاستعلاء (٧)</button>
+            <button onclick="filterLettersBySifah('استفال')" data-filter="استفال" class="sifah-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 hover:bg-navy-800 hover:text-white transition">الاستفال (٢٢)</button>
+            <button onclick="filterLettersBySifah('إطباق')" data-filter="إطباق" class="sifah-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 hover:bg-navy-800 hover:text-white transition">الإطباق (٤)</button>
+            <button onclick="filterLettersBySifah('انفتاح')" data-filter="انفتاح" class="sifah-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 hover:bg-navy-800 hover:text-white transition">الانفتاح (٢٥)</button>
+            <button onclick="filterLettersBySifah('إذلاق')" data-filter="إذلاق" class="sifah-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 hover:bg-navy-800 hover:text-white transition">الإذلاق (٦)</button>
+            <button onclick="filterLettersBySifah('إصمات')" data-filter="إصمات" class="sifah-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 hover:bg-navy-800 hover:text-white transition">الإصمات (٢٣)</button>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span class="text-xs font-bold text-gold-500 ml-1">صفات لا ضد لها:</span>
+            <button onclick="filterLettersBySifah('صفير')" data-filter="صفير" class="sifah-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-gold-50 border border-gold-400/40 hover:bg-gold-500 hover:text-white transition">الصفير (٣)</button>
+            <button onclick="filterLettersBySifah('قلقلة')" data-filter="قلقلة" class="sifah-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-gold-50 border border-gold-400/40 hover:bg-gold-500 hover:text-white transition">القلقلة (٥)</button>
+            <button onclick="filterLettersBySifah('لين')" data-filter="لين" class="sifah-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-gold-50 border border-gold-400/40 hover:bg-gold-500 hover:text-white transition">اللين (٢)</button>
+            <button onclick="filterLettersBySifah('انحراف')" data-filter="انحراف" class="sifah-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-gold-50 border border-gold-400/40 hover:bg-gold-500 hover:text-white transition">الانحراف (٢)</button>
+            <button onclick="filterLettersBySifah('تكرير')" data-filter="تكرير" class="sifah-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-gold-50 border border-gold-400/40 hover:bg-gold-500 hover:text-white transition">التكرير (١)</button>
+            <button onclick="filterLettersBySifah('تفشي')" data-filter="تفشي" class="sifah-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-gold-50 border border-gold-400/40 hover:bg-gold-500 hover:text-white transition">التفشي (١)</button>
+            <button onclick="filterLettersBySifah('استطالة')" data-filter="استطالة" class="sifah-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-gold-50 border border-gold-400/40 hover:bg-gold-500 hover:text-white transition">الاستطالة (١)</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- الشبكة: لوحة الحروف الـ 29 + بطاقة تحليل الحرف -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- لوحة الحروف -->
+        <div class="lg:col-span-5 bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200/80">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-bold text-navy-900">حروف الهجاء العربية (٢٩ حرفاً)</h3>
+            <span id="active-filter-tag" class="text-xs font-bold text-gold-500">الكل</span>
+          </div>
+          <div id="alphabet-grid" class="grid grid-cols-5 sm:grid-cols-6 gap-2.5">
+            <!-- تُملأ برمجياً -->
+          </div>
+          <p class="mt-4 text-[11px] text-slate-500 leading-relaxed bg-slate-50 p-2.5 rounded-xl border border-slate-200/70">
+            * ملاحظة: تم اعتماد الألف المدية (ا) مستقلة عن الهمزة (ء)، مع توضيح حالة المد واللين للواو والياء في بطاقة كل حرف.
+          </p>
+        </div>
+
+        <!-- بطاقة تفصيل صفات الحرف المختار -->
+        <div class="lg:col-span-7 bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200/80">
+          <!-- رأس البطاقة -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-slate-200">
+            <div class="flex items-center gap-4">
+              <div id="selected-letter-box" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-navy-900 text-gold-400 font-quran text-4xl sm:text-5xl font-bold flex items-center justify-center shadow-md border-2 border-gold-500/50">
+                ع
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 id="selected-letter-name" class="text-xl sm:text-2xl font-extrabold text-navy-900">حرف العين (ع)</h3>
+                  <span id="selected-letter-count-badge" class="text-xs font-bold bg-gold-100 text-navy-900 px-2.5 py-0.5 rounded-full">٥ صفات</span>
+                </div>
+                <p id="selected-letter-makhraj" class="text-xs sm:text-sm text-slate-600 mt-1">
+                  المخرج: <span class="font-bold text-navy-800">الحلق — وسط الحلق</span>
+                </p>
+                <p id="selected-letter-note" class="text-xs text-gold-600 font-medium mt-0.5 hidden"></p>
+              </div>
+            </div>
+
+            <button onclick="jumpToMakhrajFromLetter()" class="self-start sm:self-center text-xs font-bold bg-navy-800 hover:bg-navy-900 text-white px-3.5 py-2.5 rounded-xl transition flex items-center gap-1.5 shadow-sm">
+              <span>عرض المخرج على الرسم</span>
+              <span>←</span>
+            </button>
+          </div>
+
+          <!-- أ) الصفات التي لها ضد (5 أزواج = 10 صفات) -->
+          <div class="mt-5">
+            <h4 class="text-sm font-bold text-navy-900 mb-3 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-navy-800"></span>
+              أولاً: الصفات التي لها ضد (يأخذ الحرف صفة واحدة من كل زوج)
+            </h4>
+            <div id="opposite-sifaat-container" class="space-y-2.5">
+              <!-- 5 صفوف للأزواج الخمسة -->
+            </div>
+          </div>
+
+          <!-- ب) الصفات التي ليس لها ضد (7 صفات) -->
+          <div class="mt-6 pt-5 border-t border-slate-200">
+            <h4 class="text-sm font-bold text-navy-900 mb-3 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-gold-500"></span>
+              ثانياً: الصفات السبع التي ليس لها ضد
+            </h4>
+            <div id="non-opposite-sifaat-container">
+              <!-- تُملأ برمجياً -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- القسم الثالث: الصفات وحركة الصوت والنفس (رسوم متحركة) -->
+    <!-- ========================================================= -->
+    <section id="section-sifaat" class="hidden space-y-6">
+      
+      <!-- مقدمة القسم -->
+      <div class="bg-navy-900 text-white rounded-2xl p-5 sm:p-6 shadow-md">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-white">الصفات الـ ١٧ وحركة الصوت والنفس</h2>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-3xl leading-relaxed">
+              محاكاة بصرية تفاعلية توضح آلية جريان النفس (الهواء)، وانحباس الصوت أو جريانه أو توسطه، وحركة اللسان والوترين الصوتيين لكل صفة من الصفات المعتمدة.
+            </p>
+          </div>
+          <div class="flex gap-2 shrink-0">
+            <button onclick="filterSifaatCards('all')" id="sifah-tab-all" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-gold-500 text-navy-900 transition">الكل (١٧)</button>
+            <button onclick="filterSifaatCards('opposite')" id="sifah-tab-opp" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-navy-800 text-slate-200 hover:bg-navy-700 transition">لها ضد (١٠)</button>
+            <button onclick="filterSifaatCards('single')" id="sifah-tab-sin" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-navy-800 text-slate-200 hover:bg-navy-700 transition">لا ضد لها (٧)</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- شبكة بطاقات الصفات المتحركة -->
+      <div id="sifaat-animations-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- يتم توليد بطاقات الصفات مع الرسوم المتحركة SVG برمجياً -->
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- تذييل الصفحة -->
+  <footer class="bg-white border-t border-slate-200 mt-12 py-5 text-center text-xs text-slate-500">
+    <p>موسوعة مخارج الحروف وصفاتها التفاعلية — وفق مذهب الخليل بن أحمد الفراهيدي والإمام ابن الجزري رحمهما الله</p>
+  </footer>
+
+  <!-- ========================================================= -->
+  <!-- البيانات والمنطق البرمجي التفاعلي (JavaScript) -->
+  <!-- ========================================================= -->
+  <script>
+    // ---------------------------------------------------------
+    // 1. قاعدة بيانات المخارج الـ 17 (مذهب الخليل بن أحمد الفراهيدي)
+    // ---------------------------------------------------------
+    const MAKHAARIJ_DATA = [
+      {
+        id: 1,
+        general: 'الجوف',
+        subName: 'خلاء الحلق والفم (مخرج مقدّر)',
+        letters: ['ا (المدية)', 'و (المدية)', 'ي (المدية)'],
+        x: 235, y: 256,
+        highlightType: 'jawf',
+        desc: 'مخرج مقدّر يشمل تجويف الحلق وتجويف الفم معاً. تخرج منه حروف المد الثلاثة (الألف الساكنة المفتوح ما قبلها، والواو الساكنة المضموم ما قبلها، والياء الساكنة المكسور ما قبلها) بامتداد الصوت دون انقطاع في موضع معين.'
+      },
+      {
+        id: 2,
+        general: 'الحلق',
+        subName: 'أقصى الحلق (منطقة الوترين الصوتيين)',
+        letters: ['ء', 'هـ'],
+        x: 325, y: 416,
+        highlightType: 'point',
+        desc: 'أبعد منطقة في الحلق مما يلي الصدر (الحنجرة). تخرج الهمزة بانطباق الوترين الصوتيين انطباقاً تاماً ثم انفتاحهما، وتخرج الهاء بانفتاحهما الجزئي وجريان النفس والصوت.'
+      },
+      {
+        id: 3,
+        general: 'الحلق',
+        subName: 'وسط الحلق (منطقة لسان المزمار)',
+        letters: ['ع', 'ح'],
+        x: 325, y: 348,
+        highlightType: 'point',
+        desc: 'منطقة رجوع لسان المزمار نحو الجدار الخلفي للحلق. في العين يضيق المخرج بفتحة محدودة فيتوسط الصوت بين الانحباس والجريان، وفي الحاء يتسع المخرج قليلاً فيجري الصوت والنفس برخاوة.'
+      },
+      {
+        id: 4,
+        general: 'الحلق',
+        subName: 'أدنى الحلق (مما يلي الفم - جذر اللسان)',
+        letters: ['غ', 'خ'],
+        x: 316, y: 294,
+        highlightType: 'point',
+        desc: 'أقرب منطقة في الحلق إلى الفم، حيث يقترب جذر اللسان من الحنك اللحمي (اللهاة). يخرج الغين مجهوراً، ويخرج الخاء مهموماً مع جريان الصوت في كليهما.'
+      },
+      {
+        id: 5,
+        general: 'اللسان',
+        subName: 'أقصى اللسان مع ما يحاذيه من الحنك اللحمي',
+        letters: ['ق'],
+        x: 288, y: 268,
+        highlightType: 'point',
+        desc: 'يرتفع أقصى اللسان (مؤخرته) ليصطدم بالجزء الرخو من سقف الحنك الأعلى (الحنك اللحمي)، فينحبس الصوت والنفس تماماً ثم ينفك بالقلقلة إذا سكنت.'
+      },
+      {
+        id: 6,
+        general: 'اللسان',
+        subName: 'أقصى اللسان مع الحنك اللحمي والعظمي (تحت القاف)',
+        letters: ['ك'],
+        x: 264, y: 263,
+        highlightType: 'point',
+        desc: 'يرتفع أقصى اللسان أسفل مخرج القاف قليلاً (أقرب إلى مقدم الفم) ليصطدم بمنطقة التقاء الحنك اللحمي بالعظمي، فينحبس الصوت أولاً ثم يخرج النفس همساً عند الانفكاك.'
+      },
+      {
+        id: 7,
+        general: 'اللسان',
+        subName: 'وسط اللسان مع ما يحاذيه من وسط الحنك الأعلى',
+        letters: ['ج', 'ش', 'ي (غير المدية)'],
+        x: 215, y: 256,
+        highlightType: 'point',
+        desc: 'يرتفع وسط اللسان نحو وسط سقف الحنك الأعلى: فينغلق المخرج تماماً في الجيم، ويبقى منفرجاً لانتشار الهواء (التفشي) في الشين، ويجري الصوت في الياء المتحركة أو اللينة.'
+      },
+      {
+        id: 8,
+        general: 'اللسان',
+        subName: 'إحدى حافتي اللسان أو كلتاهما مع الأضراس العليا',
+        letters: ['ض'],
+        x: 192, y: 266,
+        highlightType: 'point',
+        desc: 'تلتصق حافة اللسان (اليسرى أو اليمنى أو كلتاهما) بالصفحة الداخلية للأضراس العليا، ويندفع اللسان قليلاً إلى الأمام تحت ضغط الهواء المحبوس (الاستطالة).'
+      },
+      {
+        id: 9,
+        general: 'اللسان',
+        subName: 'أدنى حافتي اللسان إلى منتهى طرفه مع لثة الأسنان العليا',
+        letters: ['ل'],
+        x: 152, y: 256,
+        highlightType: 'point',
+        desc: 'تلامس حافتا اللسان الأماميتان ومنتهى طرفه لثة الأسنان العليا (ما فوق الضاحكين والنابين والرباعيتين والثنيتين)، فينحرف الصوت عن جانبي طرف اللسان.'
+      },
+      {
+        id: 10,
+        general: 'اللسان',
+        subName: 'طرف اللسان مع ما يحاذيه من لثة الثنيتين العلييين (تحت اللام)',
+        letters: ['ن'],
+        x: 144, y: 261,
+        highlightType: 'point',
+        desc: 'يقرع طرف اللسان لثة الثنيتين العلييين أسفل مخرج اللام بقليل، فينغلق المخرج الفموي ويجري الصوت عبر الخيشوم (الغنة الملازمة للنون).'
+      },
+      {
+        id: 11,
+        general: 'اللسان',
+        subName: 'طرف اللسان مع ظهره مما يلي رأسه مع لثة الثنيتين العلييين',
+        letters: ['ر'],
+        x: 147, y: 267,
+        highlightType: 'point',
+        desc: 'يرتفع طرف اللسان مع قليل من ظهره نحو لثة الثنيتين العلييين، مع إبقاء فجوة صغيرة جداً في وسط الطرف يمر منها الصوت حتى لا يرتعد اللسان بتكرير زائد.'
+      },
+      {
+        id: 12,
+        general: 'اللسان',
+        subName: 'طرف اللسان العريض مع أصول الثنايا العليا',
+        letters: ['ط', 'د', 'ت'],
+        x: 136, y: 260,
+        highlightType: 'point',
+        desc: 'يقرع طرف اللسان العريض منبت الثنايا العليا (التقاء الأسنان باللثة)، وتتميز الطاء بارتفاع أقصى اللسان وإطباقه، والدال بالجهر والقلقلة، والتاء بالهمس.'
+      },
+      {
+        id: 13,
+        general: 'اللسان',
+        subName: 'منتهى طرف اللسان مع ما بين الثنايا العليا والسفلى',
+        letters: ['ص', 'ز', 'س'],
+        x: 133, y: 282,
+        highlightType: 'point',
+        desc: 'يوضع منتهى طرف اللسان قريباً من الصفحة الداخلية للثنايا السفلى، فيمر الصوت من فرجة ضيقة بين الثنايا العليا والسفلى محدثاً صوت الصفير.'
+      },
+      {
+        id: 14,
+        general: 'اللسان',
+        subName: 'طرف اللسان مع أطراف الثنايا العليا',
+        letters: ['ظ', 'ذ', 'ث'],
+        x: 127, y: 274,
+        highlightType: 'point',
+        desc: 'يخرج طرف اللسان قليلاً ليلامس أطراف الثنايا العليا بلطف دون ضغط شديد، فتجري الرخاوة في الثلاثة مع الاستعلاء والإطباق في الظاء.'
+      },
+      {
+        id: 15,
+        general: 'الشفتان',
+        subName: 'باطن الشفة السفلى مع أطراف الثنايا العليا',
+        letters: ['ف'],
+        x: 123, y: 278,
+        highlightType: 'point',
+        desc: 'تلامس أطراف الثنايا العليا باطن الشفة السفلى ملامسة خفيفة تسمح بجريان النفس والصوت بسلاسة (همس ورخاوة).'
+      },
+      {
+        id: 16,
+        general: 'الشفتان',
+        subName: 'الشفتان معاً (انطباقاً أو استدارة)',
+        letters: ['ب', 'م', 'و (غير المدية)'],
+        x: 109, y: 284,
+        highlightType: 'point',
+        desc: 'تخرج الباء بانطباق الشفتين بقوة ثم انفكاكهما، وتخرج الميم بانطباقهما بلطف مع مصاحبة الغنة من الخيشوم، وتخرج الواو المتحركة أو اللينة باستدارة الشفتين وارتفاع أقصى اللسان.'
+      },
+      {
+        id: 17,
+        general: 'الخيشوم',
+        subName: 'أقصى الأنف المنجذب إلى داخل الفم (مخرج الغنة)',
+        letters: ['الغنة (الملازمة للنون والميم)'],
+        x: 215, y: 176,
+        highlightType: 'khayshoom',
+        desc: 'مخرج صوت الغنة الأغن الذي يخرج من تجويف الأنف ولا عمل للسان فيه، وهو صفة لازمة مركبة في جسم النون (ولو تنويناً) والميم في جميع أحوالهما.'
+      }
+    ];
+
+    // ---------------------------------------------------------
+    // 2. قاعدة بيانات الحروف الـ 29 وصفاتها الـ 17 المعتمدة
+    // ---------------------------------------------------------
+    const LETTERS_DATA = [
+      { char: 'ء', name: 'الهمزة', makhrajId: 2, opp: ['جهر', 'شدة', 'استفال', 'انفتاح', 'إصمات'], single: [] },
+      { char: 'ا', name: 'الألف المدية', makhrajId: 1, note: 'لا تكون إلا ساكنة مفتوحاً ما قبلها', opp: ['جهر', 'رخاوة', 'استفال', 'انفتاح', 'إصمات'], single: [] },
+      { char: 'ب', name: 'الباء', makhrajId: 16, opp: ['جهر', 'شدة', 'استفال', 'انفتاح', 'إذلاق'], single: ['قلقلة'] },
+      { char: 'ت', name: 'التاء', makhrajId: 12, opp: ['همس', 'شدة', 'استفال', 'انفتاح', 'إصمات'], single: [] },
+      { char: 'ث', name: 'الثاء', makhrajId: 14, opp: ['همس', 'رخاوة', 'استفال', 'انفتاح', 'إصمات'], single: [] },
+      { char: 'ج', name: 'الجيم', makhrajId: 7, opp: ['جهر', 'شدة', 'استفال', 'انفتاح', 'إصمات'], single: ['قلقلة'] },
+      { char: 'ح', name: 'الحاء', makhrajId: 3, opp: ['همس', 'رخاوة', 'استفال', 'انفتاح', 'إصمات'], single: [] },
+      { char: 'خ', name: 'الخاء', makhrajId: 4, opp: ['همس', 'رخاوة', 'استعلاء', 'انفتاح', 'إصمات'], single: [] },
+      { char: 'د', name: 'الدال', makhrajId: 12, opp: ['جهر', 'شدة', 'استفال', 'انفتاح', 'إصمات'], single: ['قلقلة'] },
+      { char: 'ذ', name: 'الذال', makhrajId: 14, opp: ['جهر', 'رخاوة', 'استفال', 'انفتاح', 'إصمات'], single: [] },
+      { char: 'ر', name: 'الراء', makhrajId: 11, opp: ['جهر', 'توسط', 'استفال', 'انفتاح', 'إذلاق'], single: ['انحراف', 'تكرير'] },
+      { char: 'ز', name: 'الزاي', makhrajId: 13, opp: ['جهر', 'رخاوة', 'استفال', 'انفتاح', 'إصمات'], single: ['صفير'] },
+      { char: 'س', name: 'السين', makhrajId: 13, opp: ['همس', 'رخاوة', 'استفال', 'انفتاح', 'إصمات'], single: ['صفير'] },
+      { char: 'ش', name: 'الشين', makhrajId: 7, opp: ['همس', 'رخاوة', 'استفال', 'انفتاح', 'إصمات'], single: ['تفشي'] },
+      { char: 'ص', name: 'الصاد', makhrajId: 13, opp: ['همس', 'رخاوة', 'استعلاء', 'إطباق', 'إصمات'], single: ['صفير'] },
+      { char: 'ض', name: 'الضاد', makhrajId: 8, opp: ['جهر', 'رخاوة', 'استعلاء', 'إطباق', 'إصمات'], single: ['استطالة'] },
+      { char: 'ط', name: 'الطاء', makhrajId: 12, opp: ['جهر', 'شدة', 'استعلاء', 'إطباق', 'إصمات'], single: ['قلقلة'] },
+      { char: 'ظ', name: 'الظاء', makhrajId: 14, opp: ['جهر', 'رخاوة', 'استعلاء', 'إطباق', 'إصمات'], single: [] },
+      { char: 'ع', name: 'العين', makhrajId: 3, opp: ['جهر', 'توسط', 'استفال', 'انفتاح', 'إصمات'], single: [] },
+      { char: 'غ', name: 'الغين', makhrajId: 4, opp: ['جهر', 'رخاوة', 'استعلاء', 'انفتاح', 'إصمات'], single: [] },
+      { char: 'ف', name: 'الفاء', makhrajId: 15, opp: ['همس', 'رخاوة', 'استفال', 'انفتاح', 'إذلاق'], single: [] },
+      { char: 'ق', name: 'القاف', makhrajId: 5, opp: ['جهر', 'شدة', 'استعلاء', 'انفتاح', 'إصمات'], single: ['قلقلة'] },
+      { char: 'ك', name: 'الكاف', makhrajId: 6, opp: ['همس', 'شدة', 'استفال', 'انفتاح', 'إصمات'], single: [] },
+      { char: 'ل', name: 'اللام', makhrajId: 9, opp: ['جهر', 'توسط', 'استفال', 'انفتاح', 'إذلاق'], single: ['انحراف'] },
+      { char: 'م', name: 'الميم', makhrajId: 16, opp: ['جهر', 'توسط', 'استفال', 'انفتاح', 'إذلاق'], single: [] },
+      { char: 'ن', name: 'النون', makhrajId: 10, opp: ['جهر', 'توسط', 'استفال', 'انفتاح', 'إذلاق'], single: [] },
+      { char: 'هـ', name: 'الهاء', makhrajId: 2, opp: ['همس', 'رخاوة', 'استفال', 'انفتاح', 'إصمات'], single: [] },
+      { char: 'و', name: 'الواو', makhrajId: 16, note: 'مدية مخرجها الجوف، ومتحركة/لينة مخرجها الشفتان', opp: ['جهر', 'رخاوة', 'استفال', 'انفتاح', 'إصمات'], single: ['لين'] },
+      { char: 'ي', name: 'الياء', makhrajId: 7, note: 'مدية مخرجها الجوف، ومتحركة/لينة مخرجها وسط اللسان', opp: ['جهر', 'رخاوة', 'استفال', 'انفتاح', 'إصمات'], single: ['لين'] },
+    ];
+
+    const OPPOSITE_PAIRS_META = [
+      { pairTitle: '١. جريان النفس وانحباسه', options: ['همس', 'جهر'], labels: { همس: 'الهمس (جريان النفس)', جهر: 'الجهر (انحباس النفس)' } },
+      { pairTitle: '٢. جريان الصوت وانحباسه', options: ['شدة', 'توسط', 'رخاوة'], labels: { شدة: 'الشدة (انحباس الصوت)', توسط: 'التوسط / البينية (اعتدال الصوت)', رخاوة: 'الرخاوة (جريان الصوت)' } },
+      { pairTitle: '٣. اتجاه الصوت وارتفاع اللسان', options: ['استعلاء', 'استفال'], labels: { استعلاء: 'الاستعلاء (ارتفاع أقصى اللسان)', استفال: 'الاستفال (انخفاض اللسان)' } },
+      { pairTitle: '٤. انحصار الصوت بين اللسان والحنك', options: ['إطباق', 'انفتاح'], labels: { إطباق: 'الإطباق (انحصار الصوت)', انفتاح: 'الانفتاح (عدم انحصار الصوت)' } },
+      { pairTitle: '٥. خفة النطق وثقله', options: ['إذلاق', 'إصمات'], labels: { إذلاق: 'الإذلاق (خفة الحرف وسرعته)', إصمات: 'الإصمات (ثقل الحرف وتمكنه)' } }
+    ];
+
+    const SINGLE_SIFAAT_NAMES = {
+      صفير: 'الصفير (حدة في الصوت تشبه صوت الطائر)',
+      قلقلة: 'القلقلة (اضطراب المخرج عند السكون)',
+      لين: 'اللين (خروج الحرف بسهولة عند سكونه بعد فتح)',
+      انحراف: 'الانحراف (ميل الصوت عن مساره لاعتراض اللسان)',
+      تكرير: 'التكرير (ارتعاد طرف اللسان ارتعادة خفيفة)',
+      تفشي: 'التفشي (انتشار الهواء داخل الفم)',
+      استطالة: 'الاستطالة (امتداد الصوت من أول حافة اللسان إلى آخرها)'
+    };
+
+    // ---------------------------------------------------------
+    // 3. قاعدة بيانات الرسوم المتحركة للصفات الـ 17 (القسم الثالث)
+    // ---------------------------------------------------------
+    const SIFAAT_ANIMATIONS_DATA = [
+      {
+        id: 'hams-jahr',
+        category: 'opposite',
+        badge: 'صفات لها ضد (١ و ٢)',
+        title: 'الهمس مقابل الجهر (حركة النفس والوترين الصوتيين)',
+        letters: 'الهمس: فحثه شخص سكت (١٠) | الجهر: باقي الحروف (١٩)',
+        desc: 'في الهمس يتباعد الوتران الصوتيان فيتدفق الهواء (النفس) بحرية دون اهتزاز. أما في الجهر فيتضام الوتران الصوتيان ويهتزان بشدة فينحبس النفس ويتحول الهواء إلى صوت رنان.',
+        svg: `
+          <svg viewBox="0 0 400 150" class="w-full h-36 bg-slate-900 rounded-xl border border-slate-700">
+            <!-- اليمين: الهمس -->
+            <text x="300" y="22" fill="#FACC15" font-size="12" font-weight="bold" text-anchor="middle">الهمس (تدفق النفس)</text>
+            <rect x="275" y="45" width="10" height="55" rx="5" fill="#94A3B8" />
+            <rect x="315" y="45" width="10" height="55" rx="5" fill="#94A3B8" />
+            <line x1="300" y1="115" x2="300" y2="32" stroke="#38BDF8" stroke-width="3" class="anim-air" />
+            <line x1="293" y1="115" x2="293" y2="35" stroke="#38BDF8" stroke-width="2" class="anim-air" />
+            <line x1="307" y1="115" x2="307" y2="35" stroke="#38BDF8" stroke-width="2" class="anim-air" />
+            <text x="300" y="136" fill="#CBD5E1" font-size="10" text-anchor="middle">وتران متباعدان + هواء جارٍ</text>
+
+            <line x1="200" y1="15" x2="200" y2="135" stroke="#334155" stroke-dasharray="4 4" />
+
+            <!-- اليسار: الجهر -->
+            <text x="100" y="22" fill="#FACC15" font-size="12" font-weight="bold" text-anchor="middle">الجهر (اهتزاز الصوت)</text>
+            <g class="anim-vibrate">
+              <rect x="88" y="45" width="10" height="55" rx="5" fill="#F59E0B" />
+              <rect x="102" y="45" width="10" height="55" rx="5" fill="#F59E0B" />
+            </g>
+            <circle cx="100" cy="72" r="24" fill="none" stroke="#FACC15" stroke-width="2" class="anim-tabashi" />
+            <text x="100" y="136" fill="#CBD5E1" font-size="10" text-anchor="middle">وتران متضامان + اهتزاز قوي</text>
+          </svg>
+        `
+      },
+      {
+        id: 'shiddah-tawassut-rakhawah',
+        category: 'opposite',
+        badge: 'صفات لها ضد (٣ و ٤ و ٥)',
+        title: 'الشدة والتوسط والرخاوة (جريان الصوت في المخرج)',
+        letters: 'الشدة: أجد قط بكت | التوسط: لن عمر | الرخاوة: باقي الحروف',
+        desc: 'الشدة: انغلاق المخرج فيصطدم الصوت وينحبس. التوسط: انغلاق جزئي فيحتبس الصوت لحظة ثم يتسرب بفتحة ضيقة (مثل حرف العين). الرخاوة: المخرج مفتوح فيجري الصوت بمرونة.',
+        svg: `
+          <svg viewBox="0 0 400 155" class="w-full h-36 bg-slate-900 rounded-xl border border-slate-700">
+            <!-- الشدة (يمين) -->
+            <text x="332" y="20" fill="#F87171" font-size="11" font-weight="bold" text-anchor="middle">الشدة (انحباس)</text>
+            <rect x="285" y="40" width="12" height="75" rx="4" fill="#EF4444" />
+            <circle cx="355" cy="78" r="7" fill="#FACC15" class="anim-stop" />
+            <text x="332" y="138" fill="#94A3B8" font-size="9.5" text-anchor="middle">مخرج مغلق تماماً</text>
+
+            <line x1="266" y1="15" x2="266" y2="140" stroke="#334155" stroke-dasharray="3 3" />
+
+            <!-- التوسط (وسط) -->
+            <text x="200" y="20" fill="#FACC15" font-size="11" font-weight="bold" text-anchor="middle">التوسط (بينية)</text>
+            <rect x="175" y="38" width="12" height="30" rx="4" fill="#F59E0B" />
+            <rect x="175" y="88" width="12" height="30" rx="4" fill="#F59E0B" />
+            <circle cx="235" cy="78" r="6" fill="#FACC15" class="anim-bainiyah" />
+            <text x="200" y="138" fill="#94A3B8" font-size="9.5" text-anchor="middle">فتحة ضيقة يمر منها الصوت</text>
+
+            <line x1="133" y1="15" x2="133" y2="140" stroke="#334155" stroke-dasharray="3 3" />
+
+            <!-- الرخاوة (يسار) -->
+            <text x="66" y="20" fill="#34D399" font-size="11" font-weight="bold" text-anchor="middle">الرخاوة (جريان)</text>
+            <rect x="45" y="35" width="12" height="18" rx="4" fill="#10B981" />
+            <rect x="45" y="102" width="12" height="18" rx="4" fill="#10B981" />
+            <line x1="115" y1="78" x2="15" y2="78" stroke="#34D399" stroke-width="4" class="anim-air" />
+            <text x="66" y="138" fill="#94A3B8" font-size="9.5" text-anchor="middle">مخرج مفتوح يجري الصوت</text>
+          </svg>
+        `
+      },
+      {
+        id: 'istila-istifal',
+        category: 'opposite',
+        badge: 'صفات لها ضد (٦ و ٧)',
+        title: 'الاستعلاء مقابل الاستفال (ارتفاع أقصى اللسان)',
+        letters: 'الاستعلاء: خص ضغط قظ (٧) | الاستفال: باقي الحروف (٢٢)',
+        desc: 'في الاستعلاء يرتفع أقصى اللسان نحو الحنك الأعلى فيتصعد الصوت إلى قبة الحنك ويحدث التفخيم. وفي الاستفال ينخفض اللسان إلى قاع الفم فينحدر الصوت ويحدث الترقيق.',
+        svg: `
+          <svg viewBox="0 0 400 150" class="w-full h-36 bg-slate-900 rounded-xl border border-slate-700">
+            <!-- الاستعلاء (يمين) -->
+            <text x="300" y="20" fill="#FACC15" font-size="11" font-weight="bold" text-anchor="middle">الاستعلاء (تفخيم)</text>
+            <path d="M 230,45 Q 300,28 365,50" fill="none" stroke="#CBD5E1" stroke-width="3" />
+            <path d="M 235,105 Q 315,52 365,105 Z" fill="#E11D48" fill-opacity="0.8" />
+            <path d="M 310,68 L 300,42" stroke="#FACC15" stroke-width="2.5" marker-end="url(#arrow)" class="anim-air" />
+            <text x="300" y="135" fill="#CBD5E1" font-size="10" text-anchor="middle">ارتفاع أقصى اللسان وتصعد الصوت</text>
+
+            <line x1="200" y1="15" x2="200" y2="135" stroke="#334155" stroke-dasharray="4 4" />
+
+            <!-- الاستفال (يسار) -->
+            <text x="100" y="20" fill="#38BDF8" font-size="11" font-weight="bold" text-anchor="middle">الاستفال (ترقيق)</text>
+            <path d="M 30,45 Q 100,28 165,50" fill="none" stroke="#CBD5E1" stroke-width="3" />
+            <path d="M 35,105 Q 100,88 165,105 Z" fill="#38BDF8" fill-opacity="0.7" />
+            <line x1="150" y1="75" x2="40" y2="75" stroke="#38BDF8" stroke-width="2.5" class="anim-air" />
+            <text x="100" y="135" fill="#CBD5E1" font-size="10" text-anchor="middle">انخفاض اللسان وانحدار الصوت</text>
+          </svg>
+        `
+      },
+      {
+        id: 'itbaq-infitah',
+        category: 'opposite',
+        badge: 'صفات لها ضد (٨ و ٩)',
+        title: 'الإطباق مقابل الانفتاح (انحصار الصوت)',
+        letters: 'الإطباق: ص ض ط ظ (٤) | الانفتاح: باقي الحروف (٢٥)',
+        desc: 'في الإطباق يلتصق أو يحاذي معظم اللسان الحنك الأعلى فينحصر الصوت بينهما بقوة (أقوى درجات التفخيم). وفي الانفتاح يتجافى اللسان عن الحنك فلا ينحصر الصوت.',
+        svg: `
+          <svg viewBox="0 0 400 150" class="w-full h-36 bg-slate-900 rounded-xl border border-slate-700">
+            <!-- الإطباق (يمين) -->
+            <text x="300" y="20" fill="#FACC15" font-size="11" font-weight="bold" text-anchor="middle">الإطباق (ص ض ط ظ)</text>
+            <path d="M 230,45 Q 300,32 365,50" fill="none" stroke="#CBD5E1" stroke-width="3" />
+            <path d="M 235,105 C 245,45 345,45 365,105 Z" fill="#D97706" fill-opacity="0.85" />
+            <rect x="255" y="42" width="85" height="8" rx="4" fill="#FACC15" class="anim-vibrate" />
+            <text x="300" y="135" fill="#CBD5E1" font-size="10" text-anchor="middle">انطباق اللسان وانحصار الصوت</text>
+
+            <line x1="200" y1="15" x2="200" y2="135" stroke="#334155" stroke-dasharray="4 4" />
+
+            <!-- الانفتاح (يسار) -->
+            <text x="100" y="20" fill="#38BDF8" font-size="11" font-weight="bold" text-anchor="middle">الانفتاح (باقي الحروف)</text>
+            <path d="M 30,45 Q 100,32 165,50" fill="none" stroke="#CBD5E1" stroke-width="3" />
+            <path d="M 35,105 Q 100,82 165,105 Z" fill="#0284C7" fill-opacity="0.7" />
+            <line x1="155" y1="65" x2="40" y2="65" stroke="#38BDF8" stroke-width="2.5" class="anim-air" />
+            <text x="100" y="135" fill="#CBD5E1" font-size="10" text-anchor="middle">تجافي اللسان ومرور الصوت</text>
+          </svg>
+        `
+      },
+      {
+        id: 'idhlaq-ismat',
+        category: 'opposite',
+        badge: 'صفات لها ضد (١٠ و ١١)',
+        title: 'الإذلاق مقابل الإصمات (خفة النطق وثقله)',
+        letters: 'الإذلاق: فر من لب (٦) | الإصمات: باقي الحروف (٢٣)',
+        desc: 'الإذلاق: سرعة النطق بالحرف وخفته لخروجه من طرف اللسان أو الشفتين. الإصمات: ثقل الحرف وتمكنه في مخرجه لخروجه من الحلق أو وسط/أقصى اللسان.',
+        svg: `
+          <svg viewBox="0 0 400 140" class="w-full h-32 bg-slate-900 rounded-xl border border-slate-700">
+            <text x="300" y="24" fill="#34D399" font-size="11" font-weight="bold" text-anchor="middle">الإذلاق (ف ر م ن ل ب)</text>
+            <circle cx="300" cy="68" r="22" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="2" />
+            <text x="300" y="73" fill="#FFFFFF" font-size="12" font-weight="bold" text-anchor="middle">طرفي / شفوي</text>
+            <text x="300" y="115" fill="#CBD5E1" font-size="10" text-anchor="middle">خفة وسرعة في الأداء</text>
+
+            <line x1="200" y1="15" x2="200" y2="125" stroke="#334155" stroke-dasharray="4 4" />
+
+            <text x="100" y="24" fill="#F59E0B" font-size="11" font-weight="bold" text-anchor="middle">الإصمات (٢٣ حرفاً)</text>
+            <circle cx="100" cy="68" r="22" fill="#F59E0B" fill-opacity="0.2" stroke="#F59E0B" stroke-width="2" />
+            <text x="100" y="73" fill="#FFFFFF" font-size="12" font-weight="bold" text-anchor="middle">ثبات وتمكن</text>
+            <text x="100" y="115" fill="#CBD5E1" font-size="10" text-anchor="middle">اعتماد قوي على المخرج</text>
+          </svg>
+        `
+      },
+      {
+        id: 'qalqalah',
+        category: 'single',
+        badge: 'صفة لا ضد لها (١)',
+        title: 'القلقلة (اضطراب المخرج عند السكون)',
+        letters: 'حروفها: قُطْبُ جَدٍّ (ق ط ب ج د)',
+        desc: 'لأن هذه الحروف تجمع بين الجهر والشدة (انحباس الصوت والنفس معاً)، فإن المخرج ينغلق تماماً عند سكونها؛ فيحدث تباعد مفاجئ لطرفي المخرج لإطلاق الصوت بنبرة قوية.',
+        svg: `
+          <svg viewBox="0 0 400 145" class="w-full h-36 bg-slate-900 rounded-xl border border-slate-700">
+            <text x="200" y="22" fill="#FACC15" font-size="12" font-weight="bold" text-anchor="middle">تصادم المخرج ثم تباعده المفاجئ (ق ط ب ج د)</text>
+            <rect x="130" y="45" width="16" height="65" rx="6" fill="#64748B" />
+            <circle cx="185" cy="78" r="11" fill="#FACC15" class="anim-qalqalah" />
+            <text x="200" y="130" fill="#CBD5E1" font-size="10" text-anchor="middle">انحباس كامل ← ارتداد واضطراب مسموع</text>
+          </svg>
+        `
+      },
+      {
+        id: 'safeer',
+        category: 'single',
+        badge: 'صفة لا ضد لها (٢)',
+        title: 'الصفير (حدة الصوت عبر مجرى ضيق)',
+        letters: 'حروفها: ص - ز - س',
+        desc: 'صوت حاد يشبه صفير الطائر يخرج من بين طرف اللسان والثنايا العليا والسفلى نتيجة مرور الهواء والصوت بقوة عبر ممر ضيق جداً.',
+        svg: `
+          <svg viewBox="0 0 400 145" class="w-full h-36 bg-slate-900 rounded-xl border border-slate-700">
+            <text x="200" y="22" fill="#FACC15" font-size="12" font-weight="bold" text-anchor="middle">مرور الصوت من مجرى ضيق بين الثنايا (ص ز س)</text>
+            <rect x="170" y="38" width="14" height="32" rx="3" fill="#FFFFFF" />
+            <rect x="170" y="84" width="14" height="32" rx="3" fill="#FFFFFF" />
+            <path d="M 270,77 L 120,77" stroke="#38BDF8" stroke-width="3" class="anim-air" />
+            <path d="M 165,77 L 95,55 M 165,77 L 95,99" stroke="#FACC15" stroke-width="2" class="anim-air" />
+            <text x="200" y="132" fill="#CBD5E1" font-size="10" text-anchor="middle">فرجة ضيقة بين الأسنان تولّد حدة الصفير</text>
+          </svg>
+        `
+      },
+      {
+        id: 'tabashi',
+        category: 'single',
+        badge: 'صفة لا ضد لها (٣)',
+        title: 'التفشي (انتشار الهواء داخل الفم)',
+        letters: 'حرفها الوحيد: الشين (ش)',
+        desc: 'انتشار الهواء في الفم من وسط اللسان حتى يصطدم بالصفحة الداخلية للأسنان العليا والسفلى عند النطق بحرف الشين.',
+        svg: `
+          <svg viewBox="0 0 400 145" class="w-full h-36 bg-slate-900 rounded-xl border border-slate-700">
+            <text x="200" y="22" fill="#FACC15" font-size="12" font-weight="bold" text-anchor="middle">انتشار الهواء وتوزعه في تجويف الفم (ش)</text>
+            <path d="M 100,45 Q 200,30 300,55" fill="none" stroke="#94A3B8" stroke-width="3" />
+            <path d="M 100,105 Q 200,85 300,105" fill="none" stroke="#E11D48" stroke-width="3" />
+            <g class="anim-tabashi">
+              <path d="M 230,75 L 130,52" stroke="#38BDF8" stroke-width="2.5" />
+              <path d="M 230,75 L 120,75" stroke="#FACC15" stroke-width="3" />
+              <path d="M 230,75 L 130,96" stroke="#38BDF8" stroke-width="2.5" />
+            </g>
+            <text x="200" y="132" fill="#CBD5E1" font-size="10" text-anchor="middle">تفرّق الهواء من وسط اللسان إلى مقدم الفم</text>
+          </svg>
+        `
+      },
+      {
+        id: 'istitalah',
+        category: 'single',
+        badge: 'صفة لا ضد لها (٤)',
+        title: 'الاستطالة (امتداد الصوت على طول حافة اللسان)',
+        letters: 'حرفها الوحيد: الضاد (ض)',
+        desc: 'امتداد صوت الضاد من أول حافة اللسان الخلفية إلى آخرها الأمامية (حتى يتصل بمخرج اللام) نتيجة اندفاع اللسان قليلاً تحت ضغط الهواء المحبوس خلفه.',
+        svg: `
+          <svg viewBox="0 0 400 145" class="w-full h-36 bg-slate-900 rounded-xl border border-slate-700">
+            <text x="200" y="22" fill="#FACC15" font-size="12" font-weight="bold" text-anchor="middle">اندفاع اللسان وامتداد الصوت على الحافة (ض)</text>
+            <rect x="110" y="45" width="180" height="14" rx="4" fill="#64748B" />
+            <rect x="150" y="72" width="130" height="24" rx="10" fill="#E11D48" class="anim-istitalah" />
+            <text x="200" y="128" fill="#CBD5E1" font-size="10" text-anchor="middle">جريان الصوت في المخرج المغلق مع امتداد الحافة</text>
+          </svg>
+        `
+      },
+      {
+        id: 'inhiraf-takrir',
+        category: 'single',
+        badge: 'صفات لا ضد لها (٥ و ٦)',
+        title: 'الانحراف (ل ر) والتكرير (ر)',
+        letters: 'الانحراف: اللام والراء | التكرير: الراء فقط',
+        desc: 'الانحراف: ميل صوت اللام إلى جانبي اللسان، وميل صوت الراء إلى وسط طرف اللسان. التكرير: ارتعاد طرف اللسان ارتعادة خفيفة بالراء (يُعرف ليُجتنب المبالغة فيه).',
+        svg: `
+          <svg viewBox="0 0 400 145" class="w-full h-36 bg-slate-900 rounded-xl border border-slate-700">
+            <text x="295" y="22" fill="#FACC15" font-size="11" font-weight="bold" text-anchor="middle">الانحراف (ل / ر)</text>
+            <rect x="285" y="55" width="20" height="40" rx="6" fill="#94A3B8" />
+            <path d="M 295,105 Q 260,75 295,42" fill="none" stroke="#38BDF8" stroke-width="2.5" class="anim-air" />
+            <path d="M 295,105 Q 330,75 295,42" fill="none" stroke="#38BDF8" stroke-width="2.5" class="anim-air" />
+            <text x="295" y="128" fill="#CBD5E1" font-size="9.5" text-anchor="middle">ميل الصوت عن الحاجز</text>
+
+            <line x1="200" y1="15" x2="200" y2="132" stroke="#334155" stroke-dasharray="4 4" />
+
+            <text x="105" y="22" fill="#FACC15" font-size="11" font-weight="bold" text-anchor="middle">التكرير (ر)</text>
+            <path d="M 65,85 Q 105,80 135,55" fill="none" stroke="#F59E0B" stroke-width="8" stroke-linecap="round" class="anim-trill" />
+            <text x="105" y="128" fill="#CBD5E1" font-size="9.5" text-anchor="middle">ارتعادة خفيفة بطرف اللسان</text>
+          </svg>
+        `
+      },
+      {
+        id: 'leen',
+        category: 'single',
+        badge: 'صفة لا ضد لها (٧)',
+        title: 'اللين (خروج الحرف بسهولة ويسر)',
+        letters: 'حرفاها: الواو والياء الساكنتان المفتوح ما قبلهما (مثل: خَوْف، بَيْت)',
+        desc: 'إخراج الحرف من مخرجه بسهولة وعدم كلفة على اللسان عند سكون الواو أو الياء وانفتاح الحرف الذي قبلهما.',
+        svg: `
+          <svg viewBox="0 0 400 130" class="w-full h-32 bg-slate-900 rounded-xl border border-slate-700">
+            <text x="200" y="24" fill="#FACC15" font-size="12" font-weight="bold" text-anchor="middle">انسياب الصوت بمرونة ويسر (خَوْف - بَيْت)</text>
+            <path d="M 330,68 Q 265,45 200,68 T 70,68" fill="none" stroke="#34D399" stroke-width="3.5" class="anim-air" />
+            <text x="200" y="110" fill="#CBD5E1" font-size="10" text-anchor="middle">موجة صوتية ناعمة بلا كلفة على اللسان</text>
+          </svg>
+        `
+      }
+    ];
+
+    // ---------------------------------------------------------
+    // 4. حالة التطبيق (State Management)
+    // ---------------------------------------------------------
+    let currentTab = 'makhaarij';
+    let selectedMakhrajId = 1;
+    let selectedGeneralFilter = 'الكل';
+    let selectedLetterChar = 'ع';
+    let selectedSifahFilter = null;
+
+    // ---------------------------------------------------------
+    // 5. وظائف التنقل بين التبويبات
+    // ---------------------------------------------------------
+    function switchTab(tabName) {
+      currentTab = tabName;
+      ['makhaarij', 'letters', 'sifaat'].forEach(t => {
+        const sec = document.getElementById(`section-${t}`);
+        const btn = document.getElementById(`tab-btn-${t}`);
+        if (t === tabName) {
+          sec.classList.remove('hidden');
+          btn.classList.add('tab-active');
+          btn.classList.remove('text-slate-300');
+        } else {
+          sec.classList.add('hidden');
+          btn.classList.remove('tab-active');
+          btn.classList.add('text-slate-300');
+        }
+      });
+    }
+
+    // ---------------------------------------------------------
+    // 6. منطق القسم الأول: مخارج الحروف الـ 17
+    // ---------------------------------------------------------
+    function initMakhaarijSection() {
+      renderGeneralFilters();
+      renderSvgMarkers();
+      selectMakhraj(1);
+    }
+
+    function renderGeneralFilters() {
+      const generals = ['الكل', 'الجوف', 'الحلق', 'اللسان', 'الشفتان', 'الخيشوم'];
+      const counts = { 'الكل': 17, 'الجوف': 1, 'الحلق': 3, 'اللسان': 10, 'الشفتان': 2, 'الخيشوم': 1 };
+      const container = document.getElementById('general-makhaarij-filters');
+
+      container.innerHTML = generals.map(g => {
+        const active = selectedGeneralFilter === g;
+        return `
+          <button onclick="filterMakhaarijByGeneral('${g}')"
+            class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 ${
+              active 
+                ? 'bg-navy-900 text-gold-400 shadow-sm ring-2 ring-gold-500/40' 
+                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+            }">
+            <span>${g}</span>
+            <span class="text-[11px] px-1.5 py-0.5 rounded-full ${active ? 'bg-gold-500/20 text-gold-300' : 'bg-white text-slate-500'}">
+              ${counts[g]}
+            </span>
+          </button>
+        `;
+      }).join('');
+
+      renderSubMakhaarijList();
+    }
+
+    function filterMakhaarijByGeneral(generalName) {
+      selectedGeneralFilter = generalName;
+      renderGeneralFilters();
+
+      // تحديد أول مخرج ضمن المجموعة تلقائياً
+      const filtered = generalName === 'الكل'
+        ? MAKHAARIJ_DATA
+        : MAKHAARIJ_DATA.filter(m => m.general === generalName);
+      
+      if (filtered.length > 0) {
+        selectMakhraj(filtered[0].id);
+      }
+    }
+
+    function renderSubMakhaarijList() {
+      const container = document.getElementById('sub-makhaarij-list');
+      const filtered = selectedGeneralFilter === 'الكل'
+        ? MAKHAARIJ_DATA
+        : MAKHAARIJ_DATA.filter(m => m.general === selectedGeneralFilter);
+
+      document.getElementById('filtered-count-label').textContent = 
+        selectedGeneralFilter === 'الكل' ? 'عرض الكل (١٧)' : `${selectedGeneralFilter} (${filtered.length})`;
+
+      container.innerHTML = filtered.map(m => {
+        const isSelected = m.id === selectedMakhrajId;
+        return `
+          <button onclick="selectMakhraj(${m.id})"
+            class="text-right p-3 rounded-xl border transition-all flex flex-col justify-between gap-2 ${
+              isSelected
+                ? 'bg-gold-50 border-gold-500 ring-2 ring-gold-500/20 shadow-sm'
+                : 'bg-slate-50/70 border-slate-200 hover:border-navy-600 hover:bg-white'
+            }">
+            <div class="flex items-center justify-between w-full">
+              <span class="text-[11px] font-bold px-2 py-0.5 rounded-md ${
+                isSelected ? 'bg-navy-900 text-gold-400' : 'bg-slate-200/80 text-slate-700'
+              }">
+                ${m.id}. ${m.general}
+              </span>
+              <div class="flex gap-1">
+                ${m.letters.map(l => `<span class="font-quran text-base font-bold text-navy-900 bg-white px-1.5 rounded border border-slate-200">${l.split(' ')[0]}</span>`).join('')}
+              </div>
+            </div>
+            <p class="text-xs font-bold text-slate-800 leading-snug line-clamp-2">${m.subName}</p>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function renderSvgMarkers() {
+      const layer = document.getElementById('svg-markers-layer');
+      layer.innerHTML = MAKHAARIJ_DATA.map(m => `
+        <g onclick="selectMakhraj(${m.id})" class="cursor-pointer group" id="marker-group-${m.id}">
+          <circle id="marker-ring-${m.id}" cx="${m.x}" cy="${m.y}" r="13" fill="#D9B343" fill-opacity="0.35" class="hidden marker-pulse" />
+          <circle id="marker-dot-${m.id}" cx="${m.x}" cy="${m.y}" r="6.5" fill="#0284C7" stroke="#FFFFFF" stroke-width="2" class="transition-all duration-200 group-hover:r-8" />
+          <text x="${m.x}" y="${m.y + 3.5}" fill="#FFFFFF" font-size="8.5" font-weight="bold" text-anchor="middle" pointer-events="none">${m.id}</text>
+        </g>
+      `).join('');
+    }
+
+    function selectMakhraj(id) {
+      selectedMakhrajId = id;
+      const m = MAKHAARIJ_DATA.find(item => item.id === id);
+      if (!m) return;
+
+      // تحديث بطاقة التفاصيل
+      document.getElementById('svg-active-badge').textContent = `${m.general} (${m.id})`;
+      document.getElementById('detail-general-name').textContent = `المخرج العام: ${m.general}`;
+      document.getElementById('detail-number-badge').textContent = `المخرج رقم ${m.id} من ١٧`;
+      document.getElementById('detail-sub-name').textContent = m.subName;
+      document.getElementById('detail-description').textContent = m.desc;
+
+      const lettersContainer = document.getElementById('detail-letters-container');
+      lettersContainer.innerHTML = m.letters.map(l => `
+        <span class="font-quran text-xl sm:text-2xl font-bold bg-gold-500 text-navy-900 px-3.5 py-1 rounded-xl shadow-sm">
+          ${l}
+        </span>
+      `).join('');
+
+      // تحديث التمييز البصري على SVG
+      const jawfEl = document.getElementById('highlight-jawf');
+      const khayshoomEl = document.getElementById('highlight-khayshoom');
+      jawfEl.style.opacity = m.highlightType === 'jawf' ? '1' : '0';
+      khayshoomEl.style.opacity = m.highlightType === 'khayshoom' ? '1' : '0';
+
+      MAKHAARIJ_DATA.forEach(item => {
+        const dot = document.getElementById(`marker-dot-${item.id}`);
+        const ring = document.getElementById(`marker-ring-${item.id}`);
+        if (item.id === id) {
+          dot.setAttribute('fill', '#D9B343');
+          dot.setAttribute('r', '9');
+          ring.classList.remove('hidden');
+        } else {
+          dot.setAttribute('fill', '#0284C7');
+          dot.setAttribute('r', '6.5');
+          ring.classList.add('hidden');
+        }
+      });
+
+      renderSubMakhaarijList();
+    }
+
+    // ---------------------------------------------------------
+    // 7. منطق القسم الثاني: الحروف وصفاتها الـ 17
+    // ---------------------------------------------------------
+    function initLettersSection() {
+      renderAlphabetGrid();
+      selectLetter('ع');
+    }
+
+    function renderAlphabetGrid() {
+      const grid = document.getElementById('alphabet-grid');
+      grid.innerHTML = LETTERS_DATA.map(item => {
+        const isSelected = item.char === selectedLetterChar;
+        const matchesFilter = !selectedSifahFilter || 
+          item.opp.includes(selectedSifahFilter) || 
+          item.single.includes(selectedSifahFilter);
+
+        return `
+          <button onclick="selectLetter('${item.char}')"
+            class="aspect-square rounded-xl font-quran text-2xl sm:text-3xl font-bold flex items-center justify-center transition-all border ${
+              isSelected
+                ? 'bg-navy-900 text-gold-400 border-gold-500 ring-2 ring-gold-500/40 scale-105 shadow-md'
+                : matchesFilter
+                  ? 'bg-slate-50 text-navy-900 border-slate-200 hover:bg-gold-50 hover:border-gold-400'
+                  : 'bg-slate-100/50 text-slate-300 border-slate-100 opacity-45'
+            }">
+            ${item.char}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function filterLettersBySifah(sifah) {
+      selectedSifahFilter = sifah;
+      document.getElementById('active-filter-tag').textContent = `تصفية: ${sifah}`;
+
+      // تحديث شكل أزرار الفلترة
+      document.querySelectorAll('.sifah-filter-btn').forEach(btn => {
+        if (btn.dataset.filter === sifah) {
+          btn.classList.add('bg-navy-900', 'text-gold-400', 'font-bold');
+        } else {
+          btn.classList.remove('bg-navy-900', 'text-gold-400', 'font-bold');
+        }
+      });
+
+      renderAlphabetGrid();
+
+      // اختيار أول حرف يطابق الفلتر إن لم يكن الحرف الحالي مطابقاً
+      const currentObj = LETTERS_DATA.find(l => l.char === selectedLetterChar);
+      if (currentObj && !currentObj.opp.includes(sifah) && !currentObj.single.includes(sifah)) {
+        const firstMatch = LETTERS_DATA.find(l => l.opp.includes(sifah) || l.single.includes(sifah));
+        if (firstMatch) selectLetter(firstMatch.char);
+      }
+    }
+
+    function resetLetterFilter() {
+      selectedSifahFilter = null;
+      document.getElementById('active-filter-tag').textContent = 'الكل';
+      document.querySelectorAll('.sifah-filter-btn').forEach(btn => {
+        btn.classList.remove('bg-navy-900', 'text-gold-400', 'font-bold');
+      });
+      renderAlphabetGrid();
+    }
+
+    function selectLetter(char) {
+      selectedLetterChar = char;
+      const letterObj = LETTERS_DATA.find(l => l.char === char);
+      if (!letterObj) return;
+
+      const makhrajObj = MAKHAARIJ_DATA.find(m => m.id === letterObj.makhrajId);
+      const totalSifaatCount = letterObj.opp.length + letterObj.single.length;
+
+      document.getElementById('selected-letter-box').textContent = letterObj.char;
+      document.getElementById('selected-letter-name').textContent = `حرف ${letterObj.name} (${letterObj.char})`;
+      document.getElementById('selected-letter-count-badge').textContent = `${totalSifaatCount} صفات`;
+      document.getElementById('selected-letter-makhraj').innerHTML = 
+        `المخرج: <span class="font-bold text-navy-800">${makhrajObj.general} — ${makhrajObj.subName}</span>`;
+
+      const noteEl = document.getElementById('selected-letter-note');
+      if (letterObj.note) {
+        noteEl.textContent = `* ${letterObj.note}`;
+        noteEl.classList.remove('hidden');
+      } else {
+        noteEl.classList.add('hidden');
+      }
+
+      // عرض الصفات التي لها ضد (5 أزواج)
+      const oppContainer = document.getElementById('opposite-sifaat-container');
+      oppContainer.innerHTML = OPPOSITE_PAIRS_META.map(pair => {
+        return `
+          <div class="bg-slate-50 rounded-xl p-3 border border-slate-200/80">
+            <div class="text-[11px] font-bold text-slate-500 mb-2">${pair.pairTitle}</div>
+            <div class="flex flex-wrap gap-2">
+              ${pair.options.map(opt => {
+                const hasIt = letterObj.opp.includes(opt);
+                return `
+                  <span class="px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${
+                    hasIt
+                      ? 'bg-navy-900 text-gold-400 shadow-sm ring-1 ring-gold-500/50'
+                      : 'bg-white text-slate-400 border border-slate-200 line-through decoration-slate-300'
+                  }">
+                    <span>${hasIt ? '✓' : '✕'}</span>
+                    <span>${pair.labels[opt]}</span>
+                  </span>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // عرض الصفات التي ليس لها ضد (7 صفات)
+      const nonOppContainer = document.getElementById('non-opposite-sifaat-container');
+      if (letterObj.single.length === 0) {
+        nonOppContainer.innerHTML = `
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 text-xs sm:text-sm text-slate-600 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+            <span>لا يتصف هذا الحرف بأي صفة من الصفات السبع التي لا ضد لها (يكتفي بالصفات الخمس المتضادة).</span>
+          </div>
+        `;
+      } else {
+        nonOppContainer.innerHTML = `
+          <div class="flex flex-wrap gap-2.5">
+            ${letterObj.single.map(s => `
+              <div class="bg-gold-100 border border-gold-400/60 text-navy-900 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 shadow-sm">
+                <span class="text-gold-600 text-base">★</span>
+                <span>${SINGLE_SIFAAT_NAMES[s]}</span>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      renderAlphabetGrid();
+    }
+
+    function jumpToMakhrajFromLetter() {
+      const letterObj = LETTERS_DATA.find(l => l.char === selectedLetterChar);
+      if (!letterObj) return;
+      selectedGeneralFilter = 'الكل';
+      renderGeneralFilters();
+      switchTab('makhaarij');
+      selectMakhraj(letterObj.makhrajId);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ---------------------------------------------------------
+    // 8. منطق القسم الثالث: الرسوم المتحركة للصفات
+    // ---------------------------------------------------------
+    function initSifaatAnimationsSection() {
+      renderSifaatCards('all');
+    }
+
+    function filterSifaatCards(category) {
+      // تحديث أزرار الفلترة
+      const map = { all: 'sifah-tab-all', opposite: 'sifah-tab-opp', single: 'sifah-tab-sin' };
+      Object.keys(map).forEach(k => {
+        const el = document.getElementById(map[k]);
+        if (k === category) {
+          el.className = 'px-3.5 py-2 rounded-xl text-xs font-bold bg-gold-500 text-navy-900 transition';
+        } else {
+          el.className = 'px-3.5 py-2 rounded-xl text-xs font-bold bg-navy-800 text-slate-200 hover:bg-navy-700 transition';
+        }
+      });
+
+      renderSifaatCards(category);
+    }
+
+    function renderSifaatCards(category) {
+      const grid = document.getElementById('sifaat-animations-grid');
+      const items = category === 'all'
+        ? SIFAAT_ANIMATIONS_DATA
+        : SIFAAT_ANIMATIONS_DATA.filter(s => s.category === category);
+
+      grid.innerHTML = items.map(s => `
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 flex flex-col justify-between gap-4 hover:shadow-md transition">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full ${
+                s.category === 'opposite' ? 'bg-navy-900 text-gold-400' : 'bg-gold-100 text-navy-900 border border-gold-400/50'
+              }">
+                ${s.badge}
+              </span>
+              <button onclick="replayCardAnimation('anim-box-${s.id}')" class="text-xs font-bold text-navy-700 hover:text-gold-600 bg-slate-100 hover:bg-gold-50 px-2.5 py-1 rounded-lg transition flex items-center gap-1">
+                <span>↻</span>
+                <span>إعادة الحركة</span>
+              </button>
+            </div>
+            <h3 class="text-base sm:text-lg font-extrabold text-navy-900 mb-1">${s.title}</h3>
+            <p class="text-xs font-bold text-gold-600 mb-3">${s.letters}</p>
+            
+            <!-- حاوية الرسم المتحرك -->
+            <div id="anim-box-${s.id}" class="my-3">
+              ${s.svg}
+            </div>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed bg-slate-50 p-3.5 rounded-xl border border-slate-200/70">
+            ${s.desc}
+          </p>
+        </div>
+      `).join('');
+    }
+
+    function replayCardAnimation(boxId) {
+      const box = document.getElementById(boxId);
+      if (!box) return;
+      const html = box.innerHTML;
+      box.innerHTML = '';
+      requestAnimationFrame(() => {
+        box.innerHTML = html;
+      });
+    }
+
+    // ---------------------------------------------------------
+    // 9. التهيئة عند تحميل الصفحة
+    // ---------------------------------------------------------
+    window.addEventListener('DOMContentLoaded', () => {
+      initMakhaarijSection();
+      initLettersSection();
+      initSifaatAnimationsSection();
+    });
+  </script>
+</body>
+</html>
